@@ -1,9 +1,20 @@
+
 public class Main {
     public static void main(String[] args) {
-        int a = 34;
-        int b = 44;
-        int c = a + b;
+        System.out.println("Start: " + Thread.currentThread().getName());
 
-        System.out.println(c);
+        Runnable target = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println(i + ": " + Thread.currentThread().getName());
+                }
+            }
+        };
+
+        Thread t = new Thread(target);
+        t.start();
+
+        System.out.println("End: " + Thread.currentThread().getName());
     }
 }
